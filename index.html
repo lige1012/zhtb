@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>淘宝链接转换器</title>
+    <script>
+        function convertToLink() {
+            var text = document.getElementById("textInput").value;
+            if(textInput.value === ''){
+                alert('请输入商品id')
+                return ;
+            }
+            var link = document.getElementById("linkOutput");
+            var show = document.getElementById("show")
+            show.style.display = 'block'
+            link.innerHTML = '<a id="iptText" target="_blank" href="https://item.taobao.com/item.htm?id=' + text + '">' + 'https://item.taobao.com/item.htm?id=' + text + '</a>';
+            copyToclip()
+        }
+         function copyToclip(){
+            var t = document.getElementById('iptText')
+            var textarea = document.createElement("textarea");
+            textarea.value = t.innerHTML
+            console.log(textarea.value)
+            document.body.appendChild(textarea);
+            textarea.select();
+            document.execCommand('copy');
+            document.body.removeChild(textarea);
+        }   
+   </script>
+</head>
+<body>
+    <h2>淘宝链接转换器(仅支持淘宝链接)</h2>
+    <input style="font-size: 22px;" type="text" id="textInput" placeholder="输入商品id">
+    <button style="font-size: 22px;" onclick="convertToLink()">转换+复制为淘宝链接</button>
+    <p style="font-size: 22px;" id="linkOutput"></p>
+    <p style="display: none;font-size: 22px;" id="show">点击上方直接访问</p>
+</body>
+</html>
